@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportShop</string>
+
+    <string name="authorization">Авторизация</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_in">Войти</string>
+
+    <string name="login_hint">Введите логин</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="repeat_password_hint">Повторите пароль</string>
+    <string name="login_signup_hint">Придумайте логин</string>
+    <string name="password_signup_hint">Придумайте пароль</string>
+    <string name="sign_up_button">Зарегистрироваться</string>
+    <string name="password_repeat_hint">Повторите пароль</string>
+
+</resources>
