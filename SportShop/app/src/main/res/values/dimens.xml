@@ -10,4 +10,7 @@
     <dimen name="inset_main_button">0dp</dimen>
     <dimen name="main_button_min_width">0dp</dimen>
     <dimen name="main_button_min_height">0dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="margin">5dp</dimen>
+    <dimen name="text_size_item">14sp</dimen>
 </resources>

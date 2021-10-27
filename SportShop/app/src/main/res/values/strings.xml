@@ -13,5 +13,10 @@
     <string name="password_signup_hint">Придумайте пароль</string>
     <string name="sign_up_button">Зарегистрироваться</string>
     <string name="password_repeat_hint">Повторите пароль</string>
+    <string name="search">Поиск</string>
+    <string name="description">Подробное описание</string>
+    <string name="hat1">Бейсболка Ravens белая </string>
+    <string name="sweatshirt1">Толстовка Ravens </string>
+    <string name="t_shirt1">Футболка Ravens </string>
 
 </resources>

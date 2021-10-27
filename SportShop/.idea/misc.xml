@@ -3,10 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SportShop/app/src/main/res/drawable/constraint_layout_bg.xml" value="0.37552083333333336" />
         <entry key="..\:/SportShop/app/src/main/res/drawable/ic_splash.xml" value="0.25" />
+        <entry key="..\:/SportShop/app/src/main/res/drawable/item_hat.xml" value="0.37552083333333336" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_hats.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_main.xml" value="0.29528985507246375" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_sign_up.xml" value="0.28894927536231885" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_splash.xml" value="0.2826086956521739" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_sweatshirt.xml" value="0.2826086956521739" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_sweatshirts.xml" value="0.25" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_t_shirts.xml" value="0.33" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/item_hat.xml" value="0.5" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/item_hat2.xml" value="0.26856884057971014" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/item_hat3.xml" value="0.26856884057971014" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/item_sweatshirt.xml" value="0.2826086956521739" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/item_t_shirt.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/sign_up.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/splash.xml" value="0.5" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/layout/activity_main.xml" value="0.24048913043478262" />
       </map>
     </option>
   </component>
