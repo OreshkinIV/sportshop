@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/margin">
 
         <ImageView
-            android:id="@+id/iv_item_sweatshirt"
+            android:id="@+id/iv_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
@@ -21,22 +21,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sweatshirt1" />
+            tools:srcCompat="@drawable/ic_hat1" />
 
         <TextView
-            android:id="@+id/tv_item_sweatshirt"
+            android:id="@+id/tv_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
             android:lines="1"
             android:textSize="@dimen/text_size_item"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_item_sweatshirt"
+            app:layout_constraintStart_toEndOf="@+id/iv_item"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/sweatshirt1" />
+            tools:text="@string/hat1" />
 
         <TextView
-            android:id="@+id/tv_item_sweatshirt2"
+            android:id="@+id/tv2_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
@@ -45,9 +45,9 @@
             android:textSize="@dimen/text_size_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_item_sweatshirt"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_sweatshirt"
-            android:text="@string/description" />
+            app:layout_constraintStart_toEndOf="@+id/iv_item"
+            app:layout_constraintTop_toBottomOf="@id/tv_item"
+            tools:text="@string/description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

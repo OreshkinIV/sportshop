@@ -10,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SportShop">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.sportshop.activity.CategoriesActivity"/>
+        <activity android:name="com.example.sportshop.activity.ProductsActivity"/>
+        <activity android:name="com.example.sportshop.activity.SignUpActivity"/>
+        <activity android:name="com.example.sportshop.activity.SplashActivity"/>
+        <activity android:name="com.example.sportshop.activity.ProductActivity"/>
     </application>
 
 </manifest>

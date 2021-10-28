@@ -8,32 +8,38 @@
     android:padding="10dp">
 
     <ImageButton
-        android:id="@+id/ib_activity_t_shirts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ib_activity_product"
+        android:layout_width="39dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
         android:background="?selectableItemBackground"
-        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvProducts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search" />
+        app:layout_constraintVertical_bias="0.545"
+        android:src="@drawable/ic_search" />
 
     <EditText
-        android:id="@+id/et_activity_t_shirts"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_activity_product"
+        android:layout_width="336dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/search"
         android:inputType="textPersonName"
         android:lines="1"
-        android:hint="@string/search"
-        app:layout_constraintEnd_toStartOf="@+id/ib_activity_t_shirts"
+        app:layout_constraintEnd_toStartOf="@+id/ib_activity_product"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_t_shirt"
+        tools:listitem="@layout/item_product"
         tools:itemCount="10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_activity_t_shirts" />
+        app:layout_constraintTop_toBottomOf="@+id/et_activity_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SportShop/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37552083333333336" />
+        <entry key="..\:/SportShop/app/src/main/res/drawable/bg_constraint_layout.xml" value="0.37552083333333336" />
         <entry key="..\:/SportShop/app/src/main/res/drawable/constraint_layout_bg.xml" value="0.37552083333333336" />
+        <entry key="..\:/SportShop/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37552083333333336" />
         <entry key="..\:/SportShop/app/src/main/res/drawable/ic_splash.xml" value="0.25" />
         <entry key="..\:/SportShop/app/src/main/res/drawable/item_hat.xml" value="0.37552083333333336" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_categories.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_hats.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_main.xml" value="0.29528985507246375" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_products.xml" value="0.359375" />
+        <entry key="..\:/SportShop/app/src/main/res/layout/activity_sign_in.xml" value="0.359375" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_sign_up.xml" value="0.28894927536231885" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_splash.xml" value="0.2826086956521739" />
         <entry key="..\:/SportShop/app/src/main/res/layout/activity_sweatshirt.xml" value="0.2826086956521739" />
@@ -20,7 +26,11 @@
         <entry key="..\:/SportShop/app/src/main/res/layout/item_t_shirt.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/sign_up.xml" value="0.33" />
         <entry key="..\:/SportShop/app/src/main/res/layout/splash.xml" value="0.5" />
-        <entry key="..\:/sportshop/SportShop/app/src/main/res/layout/activity_main.xml" value="0.24048913043478262" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/drawable/ic_search.xml" value="0.21666666666666667" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/drawable/ic_search2.xml" value="0.21666666666666667" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/layout/activity_categories.xml" value="0.20052083333333334" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/layout/activity_products.xml" value="0.33" />
+        <entry key="..\:/sportshop/SportShop/app/src/main/res/layout/activity_sign_up.xml" value="0.33152173913043476" />
       </map>
     </option>
   </component>

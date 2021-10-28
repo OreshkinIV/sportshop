@@ -18,5 +18,9 @@
     <string name="hat1">Бейсболка Ravens белая </string>
     <string name="sweatshirt1">Толстовка Ravens </string>
     <string name="t_shirt1">Футболка Ravens </string>
+    <string name="categories">Категории</string>
+    <string name="hats">Кепки</string>
+    <string name="sweatshirts">Толстовки</string>
+    <string name="t_shirts">Футболки</string>
 
 </resources>
