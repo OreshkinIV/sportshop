@@ -24,7 +24,7 @@ class ProductsActivity : Activity() {
         val rvProducts = findViewById<RecyclerView>(R.id.rvProducts)
 
         rvProducts.layoutManager = LinearLayoutManager(this)
-        rvProducts.adapter = ProductAdapter(products) { (name, description, iconResId) ->
+        rvProducts.adapter = ProductAdapter(products) { (name, description,iconResId) ->
             val intent = Intent(this, ProductActivity::class.java)
             intent.putExtra(KEY_NAME, name)
             intent.putExtra(KEY_DESCRIPTION, description)

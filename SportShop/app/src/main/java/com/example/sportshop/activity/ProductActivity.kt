@@ -9,11 +9,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshop.R
 import model.Product
+import com.example.sportshop.databinding.ItemProductBinding
 
 class ProductActivity : Activity() {
+
+    private lateinit var binding: ItemProductBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.item_product)
+        binding = ItemProductBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+      //  binding.tvItem.text = intent.getStringExtra("KEY_NAME")
+     // binding.tv2Item.text = intent.getStringExtra("KEY_DESCRIPTION")
+
     }
 }
 

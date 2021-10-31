@@ -4,11 +4,10 @@ import androidx.annotation.DrawableRes
 
 data class Product(
     val productName: String,
-    val productId: Int,
-    val category: String,
-    val price: Int,
-    val manufacturer: Manufacturer,
+    val description: String,
     @DrawableRes
     val coverResId: Int,
-    val description: String
+    val category: String,
+    val price: Int,
+    val manufacturer: Manufacturer
 )

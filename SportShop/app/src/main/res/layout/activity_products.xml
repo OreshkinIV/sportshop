@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="true"
-    android:padding="10dp">
+    android:paddingStart="@dimen/normal_100"
+    android:paddingEnd="@dimen/normal_100">
 
     <ImageButton
         android:id="@+id/ib_activity_product"
