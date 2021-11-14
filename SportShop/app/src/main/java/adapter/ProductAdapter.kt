@@ -1,6 +1,6 @@
 package adapter
 
-import com.example.sportshop.activity.ProductsVH
+import com.example.sportshop.fragments.ProductsVH
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +17,7 @@ class ProductAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsVH {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ProductsVH(
-            layoutInflater.inflate(R.layout.item_product, parent, false),
+            layoutInflater.inflate(R.layout.fragment_product, parent, false),
             listener
         )
     }

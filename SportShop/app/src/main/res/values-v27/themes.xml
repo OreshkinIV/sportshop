@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
     <style name="Base.V27.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:navigationBarColor">@color/white_50pc</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">@color/black_20pc</item>
+    </style>
+
+    <style name="Theme.SportShop" parent="Base.V27.Theme">
+        <item name="android:statusBarColor">@color/black_20pc</item>
+        <item name="colorPrimary">@color/smalt</item>
+        <item name="materialButtonStyle">@style/Theme.SportShop</item>
+        <item name="textInputStyle">@style/Theme.SportShop.TextInputLayout</item>
+        <item name="colorPrimaryDark">@color/primary</item>
     </style>
 </resources>

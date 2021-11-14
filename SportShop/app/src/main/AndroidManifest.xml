@@ -3,25 +3,21 @@
     package="com.example.sportshop">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportShop">
         <activity
-            android:name=".activity.MainActivity"
+            android:theme="@style/Theme.SportShop"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.sportshop.activity.CategoriesActivity"/>
-        <activity android:name="com.example.sportshop.activity.ProductsActivity"/>
-        <activity android:name="com.example.sportshop.activity.SignUpActivity"/>
-        <activity android:name="com.example.sportshop.activity.SplashActivity"/>
-        <activity android:name="com.example.sportshop.activity.ProductActivity"/>
     </application>
-
 </manifest>
