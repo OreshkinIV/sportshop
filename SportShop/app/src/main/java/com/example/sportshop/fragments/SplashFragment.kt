@@ -27,17 +27,22 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             requireActivity().window.insetsController?.hide(WindowInsets.Type.statusBars())
-            requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            requireActivity().window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         } else {
             requireActivity().window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-            requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            requireActivity().window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
-           (activity as MainActivity).navigateToFragment(SignInFragment.newInstance())
+            (activity as MainActivity).navigateToFragment(SignInFragment.newInstance())
+            requireActivity().window.clearFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }, 2500)
     }
 }

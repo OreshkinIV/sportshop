@@ -4,8 +4,11 @@ import com.example.sportshop.fragments.ProductsVH
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.bumptech.glide.Glide
 import com.example.sportshop.R
 import model.Product
+import java.net.URL
 
 typealias OnProductClickListener = (Product) -> Unit
 
@@ -21,8 +24,9 @@ class ProductAdapter(
             listener
         )
     }
-    override fun onBindViewHolder(holder: ProductsVH, position: Int) =
+    override fun onBindViewHolder(holder: ProductsVH, position: Int) {
         holder.bind(products[position])
+    }
 
     override fun getItemCount(): Int = products.size
 }

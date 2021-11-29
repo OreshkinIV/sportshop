@@ -16,6 +16,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in)  {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
+        requireActivity().window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_VISIBLE
 
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSignInBinding.bind(view)

@@ -1,13 +1,14 @@
 package model
 
-import androidx.annotation.DrawableRes
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Product(
-    val productName: String,
-    val description: String,
-    @DrawableRes
-    val coverResId: Int,
+    val product_id: Int,
     val category: String,
+    val product_name: String,
     val price: Int,
-    val manufacturer: Manufacturer
+    val manufacturer: String,
+    val description: String,
+    val iconUrl: String
 )

@@ -1,6 +1,7 @@
 package com.example.sportshop.fragments
 
 import adapter.ProductAdapter
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,26 +9,70 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportshop.MainActivity
 import com.example.sportshop.R
 import com.example.sportshop.databinding.FragmentProductsBinding
-import data.DataSource.products_sweatshirts
+import com.example.sportshop.network.NetworkService
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.serialization.ExperimentalSerializationApi
 
 class ProductsSweatshirtsFragment : Fragment(R.layout.fragment_products) {
 
     private lateinit var binding: FragmentProductsBinding
 
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
+        binding.progressBar.visibility = View.GONE
+        binding.swipeRefreshLayout.isRefreshing = false
+        Snackbar.make(
+            requireView(),
+            "$exception",
+            Snackbar.LENGTH_SHORT
+        ).setBackgroundTint(Color.parseColor("#ED4337"))
+            .setActionTextColor(Color.parseColor("#FFFFFF"))
+            .show()
+    }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+
     companion object {
         fun newInstance() = ProductsSweatshirtsFragment()
     }
 
+    @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProductsBinding.bind(view)
 
-        binding.toolbar.setNavigationOnClickListener { (activity as MainActivity).navigateToFragment(CategoriesFragment.newInstance())  }
+        binding.toolbar.setNavigationOnClickListener {
+            (activity as MainActivity).navigateToFragment(
+                CategoriesFragment.newInstance()
+            )
+        }
+        loadSweatshirts()
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = true
+            loadSweatshirts()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+    }
 
- binding.rvProducts.layoutManager = LinearLayoutManager(context)
- binding.rvProducts.adapter = ProductAdapter(products_sweatshirts) { (name,description,resId) ->
-     (activity as MainActivity).navigateToFragment(ProductFragment.newInstance(name,description,resId))
-
- }
-}
+    @ExperimentalSerializationApi
+    private fun loadSweatshirts() {
+        scope.launch {
+            val sweatshirts = NetworkService.loadSweatshirts()
+            binding.rvProducts.layoutManager = LinearLayoutManager(context)
+            binding.rvProducts.adapter =
+                ProductAdapter(sweatshirts) { (id, category, name, price, manufacturer, description, image) ->
+                    (activity as MainActivity).navigateToFragment(
+                        ProductDetailsFragment.newInstance(
+                            id, category, name, price, manufacturer, description, image
+                        )
+                    )
+                }
+            binding.progressBar.visibility = View.GONE
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+    }
 }

@@ -22,5 +22,9 @@
     <string name="hats">Кепки</string>
     <string name="sweatshirts">Толстовки</string>
     <string name="t_shirts">Футболки</string>
+    <string name="price">1000</string>
+    <string name="rub">₽</string>
+    <string name="manufacturer">Производитель</string>
+    <string name="buy_for">"Купить за "</string>
 
 </resources>
