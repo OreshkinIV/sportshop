@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportshop.MainActivity
@@ -16,6 +17,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -25,10 +27,12 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
         binding.progressBar.visibility = GONE
+        binding.rvProducts.adapter =
+            ProductAdapter(listOf()) {}
         binding.swipeRefreshLayout.isRefreshing = false
         Snackbar.make(
             requireView(),
-            "$exception",
+            getString(R.string.error),
             Snackbar.LENGTH_SHORT
         ).setBackgroundTint(Color.parseColor("#ED4337"))
             .setActionTextColor(Color.parseColor("#FFFFFF"))
@@ -39,7 +43,8 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
         fun newInstance() = ProductsHatsFragment()
     }
 
-    private val scope = CoroutineScope(Dispatchers.Main + Job()+coroutineExceptionHandler)
+    private val scope =
+        CoroutineScope(Dispatchers.Main + SupervisorJob() + coroutineExceptionHandler)
 
     @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +56,9 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
                 CategoriesFragment.newInstance()
             )
         }
+
         loadHats()
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.swipeRefreshLayout.isRefreshing = true
             loadHats()
@@ -63,7 +70,6 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
     private fun loadHats() {
         scope.launch {
             val hats = NetworkService.loadHats()
-
             binding.rvProducts.layoutManager = LinearLayoutManager(context)
             binding.rvProducts.adapter =
                 ProductAdapter(hats) { (id, category, name, price, manufacturer, description, image) ->

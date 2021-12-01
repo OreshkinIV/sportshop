@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 
@@ -24,17 +25,20 @@ class ProductsSweatshirtsFragment : Fragment(R.layout.fragment_products) {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
         binding.progressBar.visibility = View.GONE
+        binding.rvProducts.adapter =
+            ProductAdapter(listOf()) {}
         binding.swipeRefreshLayout.isRefreshing = false
         Snackbar.make(
             requireView(),
-            "$exception",
+            getString(R.string.error),
             Snackbar.LENGTH_SHORT
         ).setBackgroundTint(Color.parseColor("#ED4337"))
             .setActionTextColor(Color.parseColor("#FFFFFF"))
             .show()
     }
 
-    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+    private val scope =
+        CoroutineScope(Dispatchers.Main + SupervisorJob() + coroutineExceptionHandler)
 
     companion object {
         fun newInstance() = ProductsSweatshirtsFragment()

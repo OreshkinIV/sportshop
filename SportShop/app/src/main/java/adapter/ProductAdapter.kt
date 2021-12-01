@@ -4,7 +4,6 @@ import com.example.sportshop.fragments.ProductsVH
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.bumptech.glide.Glide
 import com.example.sportshop.R
 import model.Product
