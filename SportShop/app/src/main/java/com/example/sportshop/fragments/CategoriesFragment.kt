@@ -14,6 +14,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     companion object {
         fun newInstance() = CategoriesFragment()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCategoriesBinding.bind(view)

@@ -1,49 +1,40 @@
 package com.example.sportshop.fragments
 
-import adapter.ProductAdapter
-import android.graphics.Color
+import com.example.sportshop.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportshop.MainActivity
 import com.example.sportshop.R
+import com.example.sportshop.ScreenState
 import com.example.sportshop.databinding.FragmentProductsBinding
 import com.example.sportshop.network.NetworkService
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.example.sportshop.onClickFlow
+import com.example.sportshop.onRefreshFlow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onEach
 import kotlinx.serialization.ExperimentalSerializationApi
+import model.Product
 
 class ProductsSweatshirtsFragment : Fragment(R.layout.fragment_products) {
 
     private lateinit var binding: FragmentProductsBinding
 
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
-        binding.progressBar.visibility = View.GONE
-        binding.rvProducts.adapter =
-            ProductAdapter(listOf()) {}
-        binding.swipeRefreshLayout.isRefreshing = false
-        Snackbar.make(
-            requireView(),
-            getString(R.string.error),
-            Snackbar.LENGTH_SHORT
-        ).setBackgroundTint(Color.parseColor("#ED4337"))
-            .setActionTextColor(Color.parseColor("#FFFFFF"))
-            .show()
-    }
-
-    private val scope =
-        CoroutineScope(Dispatchers.Main + SupervisorJob() + coroutineExceptionHandler)
-
     companion object {
         fun newInstance() = ProductsSweatshirtsFragment()
     }
 
+    @ExperimentalCoroutinesApi
     @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,29 +45,62 @@ class ProductsSweatshirtsFragment : Fragment(R.layout.fragment_products) {
                 CategoriesFragment.newInstance()
             )
         }
-        loadSweatshirts()
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.swipeRefreshLayout.isRefreshing = true
-            loadSweatshirts()
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
+        merge(
+            flowOf(Unit),
+            binding.swipeRefreshLayout.onRefreshFlow(),
+            binding.buttonRefresh.onClickFlow()
+        ).flatMapLatest { loadSweatshirts() }
+            .distinctUntilChanged()
+            .onEach {
+                when (it) {
+                    is ScreenState.DataLoaded -> {
+                        setLoading(false)
+                        setError(null)
+                        setData(it.hats)
+                    }
+                    is ScreenState.Error -> {
+                        setLoading(false)
+                        setError(it.error)
+                        setData(null)
+                    }
+                    is ScreenState.Loading -> {
+                        setLoading(true)
+                        setError(null)
+                    }
+                }
+            }.launchIn(lifecycleScope)
     }
 
     @ExperimentalSerializationApi
-    private fun loadSweatshirts() {
-        scope.launch {
-            val sweatshirts = NetworkService.loadSweatshirts()
-            binding.rvProducts.layoutManager = LinearLayoutManager(context)
-            binding.rvProducts.adapter =
-                ProductAdapter(sweatshirts) { (id, category, name, price, manufacturer, description, image) ->
-                    (activity as MainActivity).navigateToFragment(
-                        ProductDetailsFragment.newInstance(
-                            id, category, name, price, manufacturer, description, image
-                        )
-                    )
-                }
-            binding.progressBar.visibility = View.GONE
-            binding.swipeRefreshLayout.isRefreshing = false
+    private fun loadSweatshirts() = flow {
+        emit(ScreenState.Loading)
+        val sweatshirts = NetworkService.loadSweatshirts()
+        emit(ScreenState.DataLoaded(sweatshirts))
+    }.catch {
+        emit(ScreenState.Error(getString(R.string.error)))
+    }
+
+    private fun setLoading(isLoading: Boolean) = with(binding) {
+        progressBar.isVisible = isLoading && !rvProducts.isVisible
+        swipeRefreshLayout.isRefreshing = isLoading && rvProducts.isVisible
+    }
+
+    private fun setData(sweatshirts: List<Product>?) = with(binding) {
+        swipeRefreshLayout.isVisible = sweatshirts != null
+        binding.rvProducts.layoutManager = LinearLayoutManager(context)
+        rvProducts.adapter = ProductAdapter(
+            sweatshirts ?: emptyList()
+        ) { (id, category, name, price, manufacturer, description, image) ->
+            (activity as MainActivity).navigateToFragment(
+                ProductDetailsFragment.newInstance(
+                    id, category, name, price, manufacturer, description, image
+                )
+            )
         }
+    }
+
+    private fun setError(message: String?) = with(binding) {
+        errorLayout.isVisible = message != null
+        tvError.text = message
     }
 }

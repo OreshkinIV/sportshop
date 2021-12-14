@@ -12,12 +12,16 @@ object NetworkService {
         .baseUrl("http://demo6821591.mockable.io/")
         .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
         .build()
+
     @ExperimentalSerializationApi
     private val restApi = retrofit.create(RestApi::class.java)
+
     @ExperimentalSerializationApi
     suspend fun loadHats() = restApi.loadHats()
+
     @ExperimentalSerializationApi
     suspend fun loadTshirts() = restApi.loadTshirts()
+
     @ExperimentalSerializationApi
     suspend fun loadSweatshirts() = restApi.loadSweatshirts()
 

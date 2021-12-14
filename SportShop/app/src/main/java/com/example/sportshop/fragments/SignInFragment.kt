@@ -7,7 +7,7 @@ import com.example.sportshop.MainActivity
 import com.example.sportshop.R
 import com.example.sportshop.databinding.FragmentSignInBinding
 
-class SignInFragment : Fragment(R.layout.fragment_sign_in)  {
+class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     private lateinit var binding: FragmentSignInBinding
 

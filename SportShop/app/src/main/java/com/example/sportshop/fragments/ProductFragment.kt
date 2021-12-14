@@ -1,27 +1,13 @@
 package com.example.sportshop.fragments
 
-import adapter.OnProductClickListener
-import android.os.Bundle
+import com.example.sportshop.adapter.OnProductClickListener
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sportshop.R
-import com.example.sportshop.databinding.FragmentProductBinding
 import model.Product
-
-class ProductFragment : Fragment(R.layout.fragment_product) {
-
-    private lateinit var binding: FragmentProductBinding
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentProductBinding.bind(view)
-
-    }
-}
 
 class ProductsVH(
     view: View,

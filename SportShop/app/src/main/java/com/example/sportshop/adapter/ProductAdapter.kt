@@ -1,13 +1,11 @@
-package adapter
+package com.example.sportshop.adapter
 
 import com.example.sportshop.fragments.ProductsVH
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.sportshop.R
 import model.Product
-import java.net.URL
 
 typealias OnProductClickListener = (Product) -> Unit
 

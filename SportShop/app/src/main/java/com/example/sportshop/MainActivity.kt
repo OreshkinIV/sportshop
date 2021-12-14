@@ -10,15 +10,16 @@ import com.example.sportshop.fragments.SplashFragment
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        if (savedInstanceState==null) {
+        if (savedInstanceState == null) {
             navigateToFragment(SplashFragment.newInstance())
         }
     }
+
     fun navigateToFragment(fmt: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView,fmt)
+            .replace(R.id.fragmentContainerView, fmt)
             .addToBackStack(fmt.javaClass.name)
             .commit()
     }
