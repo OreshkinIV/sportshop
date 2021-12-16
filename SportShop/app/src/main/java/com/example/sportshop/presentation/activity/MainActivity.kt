@@ -1,11 +1,12 @@
-package com.example.sportshop
+package com.example.sportshop.presentation.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.example.sportshop.R
 import com.example.sportshop.databinding.ActivityMainBinding
-import com.example.sportshop.fragments.SplashFragment
+import com.example.sportshop.presentation.fragments.SplashFragment
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

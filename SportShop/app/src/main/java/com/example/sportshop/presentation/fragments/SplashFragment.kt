@@ -1,4 +1,4 @@
-package com.example.sportshop.fragments
+package com.example.sportshop.presentation.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
-import com.example.sportshop.MainActivity
+import com.example.sportshop.presentation.activity.MainActivity
 import com.example.sportshop.R
 import com.example.sportshop.databinding.FragmentSplashBinding
 

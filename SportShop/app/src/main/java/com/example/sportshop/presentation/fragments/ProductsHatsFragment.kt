@@ -1,40 +1,31 @@
-package com.example.sportshop.fragments
+package com.example.sportshop.presentation.fragments
 
-import com.example.sportshop.adapter.ProductAdapter
+import com.example.sportshop.presentation.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sportshop.MainActivity
+import com.example.sportshop.presentation.activity.MainActivity
 import com.example.sportshop.R
-import com.example.sportshop.ScreenState
+import com.example.sportshop.presentation.viewmodel.ScreenState
 import com.example.sportshop.databinding.FragmentProductsBinding
-import com.example.sportshop.network.NetworkService
-import com.example.sportshop.onClickFlow
-import com.example.sportshop.onRefreshFlow
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.serialization.ExperimentalSerializationApi
-import model.Product
+import com.example.sportshop.data.model.Product
+import com.example.sportshop.presentation.viewmodel.HatsViewModel
+import kotlinx.coroutines.flow.launchIn
 
 class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
 
     private lateinit var binding: FragmentProductsBinding
+    private val viewModel by lazy { HatsViewModel(requireContext(), lifecycleScope) }
 
     companion object {
         fun newInstance() = ProductsHatsFragment()
     }
 
-    @ExperimentalCoroutinesApi
     @ExperimentalSerializationApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,39 +36,29 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
                 CategoriesFragment.newInstance()
             )
         }
-        merge(
-            flowOf(Unit),
-            binding.swipeRefreshLayout.onRefreshFlow(),
-            binding.buttonRefresh.onClickFlow()
-        ).flatMapLatest { loadHats() }
-            .distinctUntilChanged()
-            .onEach {
-                when (it) {
-                    is ScreenState.DataLoaded -> {
-                        setLoading(false)
-                        setError(null)
-                        setData(it.hats)
-                    }
-                    is ScreenState.Error -> {
-                        setLoading(false)
-                        setError(it.error)
-                        setData(null)
-                    }
-                    is ScreenState.Loading -> {
-                        setLoading(true)
-                        setError(null)
-                    }
+        if (savedInstanceState == null) {
+            viewModel.loadData()
+        }
+        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.loadData() }
+        binding.buttonRefresh.setOnClickListener { viewModel.loadData() }
+        viewModel.screenState.onEach {
+            when (it) {
+                is ScreenState.DataLoaded -> {
+                    setLoading(false)
+                    setError(null)
+                    setData(it.hats)
                 }
-            }.launchIn(lifecycleScope)
-    }
-
-    @ExperimentalSerializationApi
-    private fun loadHats() = flow {
-        emit(ScreenState.Loading)
-        val hats = NetworkService.loadHats()
-        emit(ScreenState.DataLoaded(hats))
-    }.catch {
-        emit(ScreenState.Error(getString(R.string.error)))
+                is ScreenState.Error -> {
+                    setLoading(false)
+                    setError(it.error)
+                    setData(null)
+                }
+                is ScreenState.Loading -> {
+                    setLoading(true)
+                    setError(null)
+                }
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun setLoading(isLoading: Boolean) = with(binding) {

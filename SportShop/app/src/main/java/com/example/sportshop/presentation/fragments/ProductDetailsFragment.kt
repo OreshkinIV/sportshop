@@ -1,4 +1,4 @@
-package com.example.sportshop.fragments
+package com.example.sportshop.presentation.fragments
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package model
+package com.example.sportshop.data.model
 
 data class OrderItems(
     val orderId: Int,

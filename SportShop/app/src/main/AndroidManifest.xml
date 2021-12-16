@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SportShop">
         <activity
             android:theme="@style/Theme.SportShop"
-            android:name=".MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,6 @@
-package com.example.sportshop
+package com.example.sportshop.presentation.viewmodel
 
-import model.Product
+import com.example.sportshop.data.model.Product
 
 sealed class ScreenState {
     data class DataLoaded(val hats: List<Product>) : ScreenState()

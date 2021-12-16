@@ -17,7 +17,7 @@ fun View.onClickFlow(): SharedFlow<Unit> {
     return sharedFlow.asSharedFlow()
 }
 
-fun SwipeRefreshLayout.onRefreshFlow(): SharedFlow<Unit>{
+fun SwipeRefreshLayout.onRefreshFlow(): SharedFlow<Unit> {
     val sharedFlow = MutableSharedFlow<Unit>(
         replay = 0,
         extraBufferCapacity = 1
@@ -26,5 +26,4 @@ fun SwipeRefreshLayout.onRefreshFlow(): SharedFlow<Unit>{
         sharedFlow.tryEmit(Unit)
     }
     return sharedFlow.asSharedFlow()
-
 }
