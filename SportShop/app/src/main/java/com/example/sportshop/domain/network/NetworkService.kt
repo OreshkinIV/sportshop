@@ -1,12 +1,13 @@
 package com.example.sportshop.domain.network
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import retrofit2.Retrofit
 
-object NetworkService {
+class NetworkService(context: Context) {
     @ExperimentalSerializationApi
     private val retrofit = Retrofit.Builder()
         .baseUrl("http://demo6821591.mockable.io/")
@@ -24,6 +25,4 @@ object NetworkService {
 
     @ExperimentalSerializationApi
     suspend fun loadSweatshirts() = restApi.loadSweatshirts()
-
-
 }

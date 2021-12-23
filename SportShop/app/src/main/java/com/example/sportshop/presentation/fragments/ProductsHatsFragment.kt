@@ -46,7 +46,7 @@ class ProductsHatsFragment : Fragment(R.layout.fragment_products) {
                 is ScreenState.DataLoaded -> {
                     setLoading(false)
                     setError(null)
-                    setData(it.hats)
+                    setData(it.products)
                 }
                 is ScreenState.Error -> {
                     setLoading(false)
